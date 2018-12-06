@@ -41,6 +41,12 @@
     * express
     * MongoDB
 
+## 如何启动
+* cd 到项目根目录下，执行```npm install```
+* cd 到项目的 server 目录下，执行```node index 或者 nodemon index```
+* 前端页面查看方式：在地址栏输入```http://localhost:3000/register```或者```http://localhost:3000/login```
+* 后端接口查看方式：在地址栏输入```http://localhost:9090/user/list```可以查看数据库中有多少注册用户的信息
+
 
 ## 注意事项
 * 涉及到前后端联调：前端服务在3000端口，后端服务器在9090端口，如果直接访问，浏览器会有跨域拦截。所以需要在package.json中配置```"proxy": "http://localhost:9090"```
@@ -50,4 +56,4 @@
 
 >博客都会先发布在github上。
 如果有错误或者不严谨的地方，请务必给予指正，十分感谢。
-如果喜欢或者有所帮助，欢迎**star**，[github](https://github.com/only-twj520Q/marriage)。新手需要鼓励，希望大家不要吝啬自己的赞哦，赠人玫瑰，手有余香！
+如果喜欢或者有所帮助，欢迎**star**，[github](https://github.com/only-twj520Q/marriage)。新手需要鼓励，希望大家不要吝啬自己的赞哦，赠人玫瑰，手有余香
