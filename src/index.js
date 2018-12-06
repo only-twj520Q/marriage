@@ -15,16 +15,20 @@ const store = createStore(reducers, compose(
   window.devToolsExtension?window.devToolsExtension():f=>f
 ))
 
-function man(){
-  return <h2>男人</h2>
+function maninfo(){
+  return <h2>继续完善男士信息</h2>
 }
 
-function women(){
-  return <h2>女人</h2>
+function womeninfo(){
+  return <h2>继续完善女士信息</h2>
 }
 
-function Dashboard(){
-  return <h2>哈哈</h2>
+function manlist(){
+  return <h2>男士列表</h2>
+}
+
+function womenlist(){
+  return <h2>女士列表</h2>
 }
 
 ReactDOM.render(
@@ -34,7 +38,10 @@ ReactDOM.render(
         <Switch>
           <Route path='/login' component={Login}></Route>
           <Route path='/register' component={Register}></Route>
-          <Route component={Dashboard}></Route>
+          <Route path='/maninfo' component={maninfo}></Route>
+          <Route path='/womeninfo' component={womeninfo}></Route>
+          <Route path='/manlist' component={manlist}></Route>
+          <Route path='/womenlist' component={womenlist}></Route>
         </Switch>
       </BrowserRouter>
     </Provider>

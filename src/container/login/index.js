@@ -2,13 +2,20 @@ import React, { Component } from 'react'
 import {
 	List,
 	InputItem,
-	Radio,
 	WingBlank,
 	WhiteSpace,
 	Button
 } from 'antd-mobile';
 import Logo from '../../component/logo';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom'
 
+import { login } from '../../redux/user/action';
+
+@connect(
+	state => state.user,
+	{ login }
+)
 class Login extends Component{
 	constructor(props) {
 		super(props);
@@ -16,6 +23,7 @@ class Login extends Component{
 			user: '',
 			pwd: ''
 		}
+		this.handleLogin = this.handleLogin.bind(this);
 		this.toRegisterPage = this.toRegisterPage.bind(this);
 	}
 
@@ -25,6 +33,10 @@ class Login extends Component{
 		})
 	}
 
+	handleLogin() {
+		this.props.login(this.state);
+	}
+
 	// 跳转到注册页面
 	toRegisterPage() {
 		this.props.history.push('/register')
@@ -32,8 +44,12 @@ class Login extends Component{
 
 
 	render(){
+		let redirectToPath = this.props.path;
 		return (
 			<div>
+
+				{ redirectToPath ? <Redirect to={redirectToPath} /> : null }
+
         <Logo />
 
         <WingBlank>
@@ -44,7 +60,7 @@ class Login extends Component{
           </List>
 
           <WhiteSpace />
-          <Button type='primary'>登陆</Button>
+          <Button type='primary' onClick={this.handleLogin}>登陆</Button>
           <WhiteSpace />
           <Button type='primary' onClick={this.toRegisterPage}>注册</Button>
 
