@@ -56,4 +56,4 @@
 
 >博客都会先发布在github上。
 如果有错误或者不严谨的地方，请务必给予指正，十分感谢。
-如果喜欢或者有所帮助，欢迎**star**，[github](https://github.com/only-twj520Q/marriage)。新手需要鼓励，希望大家不要吝啬自己的赞哦，赠人玫瑰，手有余香
+如果喜欢或者有所帮助，欢迎**star**，[github](https://github.com/only-twj520Q/marriage)。新手需要鼓励，希望大家不要吝啬自己的赞哦，赠人玫瑰，手有余香。

@@ -6,8 +6,9 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import reducers from './reducers';
 
-import Login from './container/login'
-import Register from './container/register'
+import Login from './container/login';
+import Register from './container/register';
+import AuthRoute from './component/authroute';
 
 // 生成store
 const store = createStore(reducers, compose(
@@ -35,6 +36,7 @@ ReactDOM.render(
   (
     <Provider store={store}>
       <BrowserRouter>
+        <AuthRoute></AuthRoute>
         <Switch>
           <Route path='/login' component={Login}></Route>
           <Route path='/register' component={Register}></Route>
