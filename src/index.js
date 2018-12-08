@@ -4,11 +4,13 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
-import reducers from './reducers';
 
 import Login from './container/login';
 import Register from './container/register';
+import MoreInfo from './container/moreinfo';
 import AuthRoute from './component/authroute';
+import reducers from './reducers';
+import './config';
 
 // 生成store
 const store = createStore(reducers, compose(
@@ -40,8 +42,7 @@ ReactDOM.render(
         <Switch>
           <Route path='/login' component={Login}></Route>
           <Route path='/register' component={Register}></Route>
-          <Route path='/maninfo' component={maninfo}></Route>
-          <Route path='/womeninfo' component={womeninfo}></Route>
+          <Route path='/moreinfo' component={MoreInfo}></Route>
           <Route path='/manlist' component={manlist}></Route>
           <Route path='/womenlist' component={womenlist}></Route>
         </Switch>

@@ -24,6 +24,21 @@ const models = {
     //头像
 		'avatar':{
       'type': String
+    },
+    'nickname':{
+      'type': String
+    },
+    'birthdate':{
+      'type': String
+    },
+    'salary':{
+      'type': String
+    },
+    'hobby':{
+      'type': String
+    },
+    'desc':{
+      'type': String
     }
   }
 }

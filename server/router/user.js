@@ -60,7 +60,7 @@ Router.post('/register', function(req, res) {
 				result.succ(0, '注册成功', {
 					user,
           sex,
-          path: `/${sex}info`
+          path: `/moreinfo`
 				})
 			)
     })
@@ -74,23 +74,6 @@ Router.get('/list', function(req, res) {
     return res.send(doc);
   })
 })
-
-// Router.get('/info',function(req, res){
-// 	const {userid} = req.cookies
-// 	if (!userid) {
-// 		return res.json({code:1})
-// 	}
-// 	User.findOne({ _id:userid} ,_filter , function(err,doc){
-// 		if (err) {
-// 			return res.json({code:1, msg:'后端出错了'})
-// 		}
-// 		if (doc) {
-// 			return res.json({code:0,data:doc})
-// 		}
-// 	})
-// 	// 用户有没有cookie
-//
-// })
 
 // info接口
 Router.get('/info', function(req ,res) {
@@ -108,6 +91,27 @@ Router.get('/info', function(req ,res) {
 
 		return res.json(result.succ(0, '请求成功', doc))
 
+	})
+})
+
+Router.post('/update', function(req, res) {
+	const { userid } = req.cookies;
+	if (!userid) {
+		return res.json(result.errorParam());
+	}
+
+	const body = req.body;
+
+	User.findOneAndUpdate(userid , body, function(err, doc) {
+		const data = Object.assign({}, {
+			user: doc.user,
+			type: doc.sex
+		}, body);
+
+		return res.json(result.succ(0, '请求成功', {
+			...data,
+			path: doc.sex === 'man' ? '/womenlist' : '/manlist'
+		}))
 	})
 })
 

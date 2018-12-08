@@ -1,18 +1,10 @@
 import axios from 'axios';
-import { LOGIN_SUCCESS, REGISTER_SUCCESS, ERROR_MSG } from './constant';
+import { AUTH_SUCCESS, ERROR_MSG } from './constant';
 
-// 登陆成功
-function loginSuc(data) {
+// 授权成功
+function authSuccess(data) {
   return {
-    type: LOGIN_SUCCESS,
-    payload: data
-  }
-}
-
-// 注册成功
-function registerSuc(data) {
-  return {
-    type: REGISTER_SUCCESS,
+    type: AUTH_SUCCESS,
     payload: data
   }
 }
@@ -36,7 +28,7 @@ export function login(data) {
     axios.post('/user/login', { user, pwd })
       .then(res => {
         if (res.status === 200 && res.data.code === 0) {
-          dispatch(loginSuc(res.data.data));
+          dispatch(authSuccess(res.data.data));
         } else {
           dispatch(errorMsg(res.data.msg));
         }
@@ -59,10 +51,24 @@ export function register(data) {
     axios.post('/user/register', { user, pwd, sex })
       .then(res => {
         if (res.status === 200 && res.data.code === 0) {
-          dispatch(registerSuc(res.data.data));
+          dispatch(authSuccess(res.data.data));
         } else {
           dispatch(errorMsg(res.data.msg))
         }
       })
+  }
+}
+
+// 完善信息
+export function update(data) {
+  return dispatch => {
+    axios.post('/user/update', data)
+    .then(res => {
+      if (res.status === 200 && res.data.code === 0) {
+        dispatch(authSuccess(res.data.data));
+      } else {
+        dispatch(errorMsg(res.data.msg))
+      }
+    })
   }
 }

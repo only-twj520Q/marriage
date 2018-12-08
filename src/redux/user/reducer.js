@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS, REGISTER_SUCCESS, ERROR_MSG } from './constant';
+import { AUTH_SUCCESS, ERROR_MSG } from './constant';
 
 const initState = {
   user: '',
@@ -9,12 +9,7 @@ const initState = {
 
 export function user(state = initState, action) {
   switch(action.type) {
-    case LOGIN_SUCCESS:
-      return {
-        ...state,
-        ...action.payload
-      }
-    case REGISTER_SUCCESS:
+    case AUTH_SUCCESS:
       return {
         ...state,
         ...action.payload
