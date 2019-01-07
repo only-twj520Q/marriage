@@ -31,7 +31,7 @@ Router.post('/login', function(req, res){
 		return res.json(
 			result.succ(0, '登陆成功', {
 				...doc._doc,
-        path: doc.avatar ? `/${doc.sex}list` : `/${doc.sex}info`
+        path: doc.avatar ? `/${doc.sex}list` : `/moreinfo`
 			})
 		)
 
@@ -94,6 +94,7 @@ Router.get('/info', function(req ,res) {
 	})
 })
 
+// 完善信息
 Router.post('/update', function(req, res) {
 	const { userid } = req.cookies;
 	if (!userid) {

@@ -8,8 +8,6 @@ import {
 } from 'antd-mobile';
 import Logo from '../../component/logo';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom'
-
 import { login } from '../../redux/user/action';
 
 @connect(
@@ -43,12 +41,9 @@ class Login extends Component{
 	}
 
 
-	render(){
-		let redirectToPath = this.props.path;
+	render(){console.log(this.props)
 		return (
 			<div>
-
-				{ redirectToPath ? <Redirect to={redirectToPath} /> : null }
 
         <Logo />
 
@@ -65,6 +60,7 @@ class Login extends Component{
           <Button type='primary' onClick={this.toRegisterPage}>注册</Button>
 
         </WingBlank>
+
 			</div>
 		)
 	}

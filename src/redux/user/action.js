@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AUTH_SUCCESS, ERROR_MSG } from './constant';
+import { AUTH_SUCCESS, ERROR_MSG, LOAD_DATA, REDIRECT_PATH } from './constant';
 
 // 授权成功
 function authSuccess(data) {
@@ -14,6 +14,22 @@ function errorMsg(msg) {
   return {
     type: ERROR_MSG,
     msg
+  }
+}
+
+// 加载登录用户信息
+function loadData(data) {
+  return {
+    type: LOAD_DATA,
+    payload: data
+  }
+}
+
+// 重定向
+function redirect(redirectPath) {
+  return {
+    type: REDIRECT_PATH,
+    path: redirectPath
   }
 }
 
@@ -40,7 +56,7 @@ export function login(data) {
 export function register(data) {
   let { user, pwd, repeatpwd, sex } = data;
   if (!user || !pwd || !sex) {
-    return errorMsg('用户名密码必须输入')
+    return errorMsg('用户名密码必须输入');
   }
 
   if (pwd != repeatpwd) {
@@ -63,12 +79,29 @@ export function register(data) {
 export function update(data) {
   return dispatch => {
     axios.post('/user/update', data)
-    .then(res => {
-      if (res.status === 200 && res.data.code === 0) {
-        dispatch(authSuccess(res.data.data));
-      } else {
-        dispatch(errorMsg(res.data.msg))
-      }
-    })
+      .then(res => {
+        if (res.status === 200 && res.data.code === 0) {
+          dispatch(authSuccess(res.data.data));
+        } else {
+          dispatch(errorMsg(res.data.msg))
+        }
+      })
+  }
+}
+
+// 得到个人信息
+export function getUserInfo(data) {
+  return dispatch => {
+    axios.get('/user/info')
+      .then(res => {
+        if (res.status === 200 && res.data.code === 0) {
+          // 登陆成功
+          dispatch(loadData(res.data.data))
+        } else {
+          // 登录失败则强制跳转到登录页
+          dispatch(redirect('/login'))
+          // this.props.history.push('/login');
+        }
+      })
   }
 }

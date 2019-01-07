@@ -1,4 +1,4 @@
-import { AUTH_SUCCESS, ERROR_MSG } from './constant';
+import { AUTH_SUCCESS, ERROR_MSG, LOAD_DATA, REDIRECT_PATH } from './constant';
 
 const initState = {
   user: '',
@@ -17,6 +17,15 @@ export function user(state = initState, action) {
     case ERROR_MSG:
       return {
         msg: action.msg
+      }
+    case LOAD_DATA:
+      return {
+        ...state,
+        ...action.payload
+      }
+    case REDIRECT_PATH:
+      return {
+        path: action.path
       }
     default:
       return state;

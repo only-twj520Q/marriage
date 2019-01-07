@@ -11,7 +11,6 @@ import {
 import AvatarSelector from '../../component/avatarselector';
 import { connect } from 'react-redux';
 import { update } from '../../redux/user/action';
-import { Redirect } from 'react-router-dom';
 
 @connect(
 	state => state.user,
@@ -19,7 +18,7 @@ import { Redirect } from 'react-router-dom';
 )
 class MoreInfo extends Component{
   constructor(props) {
-		super(props)
+		super(props);
 		this.state = {
       avatar: '',
 			nickname: '',
@@ -38,12 +37,8 @@ class MoreInfo extends Component{
 	}
 
   render() {
-    console.log('父组件',this.state);
-    let redirectToPath = this.props.path;
     return (
       <div>
-
-        { redirectToPath ? <Redirect to={redirectToPath} /> : null }
 
         <NavBar mode="dark">完善信息</NavBar>
 
@@ -55,11 +50,11 @@ class MoreInfo extends Component{
         <InputItem onChange={v => this.handleChange('nickname',v)}>昵称</InputItem>
 
         <DatePicker
-            mode="date"
-            minDate={new Date('1950')}
-            extra="请选择"
-            value={this.state.birthdate}
-            onChange={date => this.setState({ birthdate: date })}
+          mode="date"
+          minDate={new Date('1950')}
+          extra="请选择"
+          value={this.state.birthdate}
+          onChange={date => this.setState({ birthdate: date })}
         >
           <List.Item arrow="horizontal">生日</List.Item>
         </DatePicker>
@@ -67,10 +62,10 @@ class MoreInfo extends Component{
         <InputItem onChange={v => this.handleChange('salary',v)}>收入</InputItem>
         <InputItem onChange={v => this.handleChange('hobby',v)}>爱好</InputItem>
         <TextareaItem
-  					onChange={v => this.handleChange('desc',v)}
-  					rows={3}
-  					autoHeight
-  					title='自我描述'
+					onChange={v => this.handleChange('desc',v)}
+					rows={3}
+					autoHeight
+					title='自我描述'
   			>
 				</TextareaItem>
       </List>
@@ -86,6 +81,7 @@ class MoreInfo extends Component{
       >
         保存
       </Button>
+      
     </div>
     )
   }

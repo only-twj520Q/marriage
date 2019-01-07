@@ -32,10 +32,13 @@ class AvatarSelector extends Component{
   }
 
   onSelectAvatar(elm) {
-    this.setState(elm);
+    this.setState({
+      files: [],
+      ...elm
+    });
+    
     this.props.selectAvatar(elm.text);
   }
-
 
   render() {
     const avatarList = ['boy','girl','man','woman','pig','tiger'].map(v=>({
@@ -43,7 +46,7 @@ class AvatarSelector extends Component{
       text: v
     }));
     let { selectedSegmentIndex, icon, files} = this.state;
-    console.log('子组件');
+
     return (
       <div>
         {
@@ -72,16 +75,16 @@ class AvatarSelector extends Component{
               columnNum={3}
               onClick={elm => { this.onSelectAvatar(elm) }}
             />
-          }
+        }
 
-          {
-            selectedSegmentIndex === 1 &&
-              <ImagePicker
-                files={files}
-                onChange={this.upLoadAvatar}
-                selectable={files.length < 1}
-                multiple={false}
-              />
+        {
+          selectedSegmentIndex === 1 &&
+            <ImagePicker
+              files={files}
+              onChange={this.upLoadAvatar}
+              selectable={files.length < 1}
+              multiple={false}
+            />
           }
 
       </div>
